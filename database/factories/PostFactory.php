@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Models\Community;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,8 +22,10 @@ final class PostFactory extends Factory
     public function definition(): array
     {
         return [
+            'author_id' => User::factory(),
+            'community_id' => Community::factory(),
             'title' => fake()->title,
-            'content' => fake()->paragraph,
+            'body' => fake()->paragraph,
         ];
     }
 }

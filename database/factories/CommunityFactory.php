@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Database\Factories;
 
 use App\Models\Community;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -23,6 +24,7 @@ final class CommunityFactory extends Factory
         $name = fake()->unique()->company;
 
         return [
+            'author_id' => User::factory(),
             'name' => $name,
             'slug' => Str::slug($name),
             'description' => fake()->paragraph,
