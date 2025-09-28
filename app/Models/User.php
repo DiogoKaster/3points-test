@@ -31,6 +31,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
         'name',
         'email',
         'password',
+        'is_admin',
     ];
 
     /**
@@ -45,7 +46,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
 
     public function canAccessPanel(Panel $panel): bool
     {
-        return true;
+        return $this->is_admin;
     }
 
     public function getFilamentAvatarUrl(): ?string
@@ -53,6 +54,11 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
         $avatar = $this->getFirstMedia('profile-pictures');
 
         return $avatar?->getUrl();
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->is_admin;
     }
 
     /**
