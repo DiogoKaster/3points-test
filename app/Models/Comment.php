@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Models\Traits\HasVotes;
 use Database\Factories\CommentFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -14,6 +15,8 @@ final class Comment extends Model
 {
     /** @use HasFactory<CommentFactory> */
     use HasFactory;
+
+    use HasVotes;
 
     protected $fillable = [
         'body',
@@ -37,7 +40,7 @@ final class Comment extends Model
     }
 
     /**
-     * @return BelongsTo<\App\Models\Comment, $this>
+     * @return BelongsTo<Comment, $this>
      */
     public function parent(): BelongsTo
     {
@@ -45,12 +48,13 @@ final class Comment extends Model
     }
 
     /**
-     * @return HasMany<\App\Models\Comment, $this>
+     * @return HasMany<Comment, $this>
      */
     public function replies(): HasMany
     {
         return $this->hasMany(self::class, 'parent_id');
     }
+
     protected function casts(): array
     {
         return [
