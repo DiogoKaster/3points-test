@@ -82,6 +82,14 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
     }
 
     /**
+     * @return HasMany<Comment, $this>
+     */
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class, 'author_id');
+    }
+
+    /**
      * Get the attributes that should be cast.
      *
      * @return array<string, string>

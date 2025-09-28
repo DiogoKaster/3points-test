@@ -4,20 +4,19 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use Database\Factories\PostFactory;
+use Database\Factories\CommentFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-final class Post extends Model
+final class Comment extends Model
 {
-    /** @use HasFactory<PostFactory> */
+    /** @use HasFactory<CommentFactory> */
     use HasFactory;
 
     protected $fillable = [
-        'title',
-        'content',
+        'body',
         'votes',
     ];
 
@@ -30,21 +29,28 @@ final class Post extends Model
     }
 
     /**
-     * @return BelongsTo<Community, $this>
+     * @return BelongsTo<Post, $this>
      */
-    public function community(): BelongsTo
+    public function post(): BelongsTo
     {
-        return $this->belongsTo(Community::class);
+        return $this->belongsTo(Post::class);
     }
 
     /**
-     * @return HasMany<Comment, $this>
+     * @return BelongsTo<\App\Models\Comment, $this>
      */
-    public function comments(): HasMany
+    public function parent(): BelongsTo
     {
-        return $this->hasMany(Comment::class);
+        return $this->belongsTo(self::class, 'parent_id');
     }
 
+    /**
+     * @return HasMany<\App\Models\Comment, $this>
+     */
+    public function replies(): HasMany
+    {
+        return $this->hasMany(self::class, 'parent_id');
+    }
     protected function casts(): array
     {
         return [
