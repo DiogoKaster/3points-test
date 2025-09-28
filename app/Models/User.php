@@ -9,6 +9,7 @@ use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\MediaLibrary\HasMedia;
@@ -59,6 +60,14 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
     public function isAdmin(): bool
     {
         return $this->is_admin;
+    }
+
+    /**
+     * @return HasMany<Community, $this>
+     */
+    public function communitiesCreated(): HasMany
+    {
+        return $this->hasMany(Community::class, 'author_id');
     }
 
     /**
