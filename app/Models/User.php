@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\Pivot;
 use Database\Factories\UserFactory;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -55,17 +57,20 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
         return $this->getFirstMedia('profile-pictures')?->getUrl();
     }
 
-    public function isAdmin(): bool
-    {
-        return $this->is_admin;
-    }
-
     /**
      * @return HasMany<Community, $this>
      */
     public function communitiesCreated(): HasMany
     {
         return $this->hasMany(Community::class, 'author_id');
+    }
+
+    /**
+     * @return BelongsToMany<Community, $this, Pivot>
+     */
+    public function communitiesJoined(): BelongsToMany
+    {
+        return $this->belongsToMany(Community::class, 'community_members');
     }
 
     /**
