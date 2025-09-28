@@ -52,9 +52,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
 
     public function getFilamentAvatarUrl(): ?string
     {
-        $avatar = $this->getFirstMedia('profile-pictures');
-
-        return $avatar?->getUrl();
+        return $this->getFirstMedia('profile-pictures')?->getUrl();
     }
 
     public function isAdmin(): bool
