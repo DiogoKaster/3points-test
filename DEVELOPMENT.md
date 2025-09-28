@@ -16,10 +16,10 @@ Aqui eu descrevo um pouco das relações que as tabelas terão, pois será a pri
 parte do projeto que irei criar.
 
 User (admin)  
-Communities (user_id, name, slug, description, cover_img_path)  
-Community User (user_id, community_id)  
-Posts (user_id, community_id, title, body, score)  
-Comments (user_id, post_id, parent_id, body, score)  
+Communities (author_id, name, slug, description)  
+Community Members (user_id, community_id)  
+Posts (author_id, community_id, title, body, score)  
+Comments (author_id, post_id, parent_id, body, score)  
 Votes (user_id, votable_id, votable_type, value)
 
 > [Downvote e Upvote x Score]  
