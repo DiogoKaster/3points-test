@@ -18,16 +18,16 @@ parte do projeto que irei criar.
 User (admin)  
 Communities (author_id, name, slug, description)  
 Community Members (user_id, community_id)  
-Posts (author_id, community_id, title, body, score)  
-Comments (author_id, post_id, parent_id, body, score)  
+Posts (author_id, community_id, title, body, votes)  
+Comments (author_id, post_id, parent_id, body, votes)  
 Votes (user_id, votable_id, votable_type, value)
 
-> [Downvote e Upvote x Score]  
+> [Downvote e Upvote x Votes]  
 > Aqui foi uma decisão importante quando pensei na performance de cálculo de
 > upvotes e downvotes dos posts do nosso sistema. Pensando em granularidade,
 > seria mais fácil para verificar individualmente quantos upvotes e downvotes
 > tem em um determinado post separando em 2 colunas na tabela os votos.
 > No entanto, olhando para o Reddit mesmo, eles mantém somente uma soma dos votos
 > em geral, isso facilita a query que o sistema faz já que só vai ser necessário
-> realizar um incremento ou decremento no score para ter registrado no post se ele está com
+> realizar um incremento ou decremento no votes para ter registrado no post se ele está com
 > contagem positiva ou negativa.
