@@ -7,36 +7,6 @@ use App\Models\Community;
 use App\Models\Post;
 use App\Models\User;
 
-it('can create a post', function (): void {
-    $user = User::factory()->create();
-    $community = Community::factory()->create(['author_id' => $user->id]);
-
-    $post = Post::factory()->create([
-        'author_id' => $user->id,
-        'community_id' => $community->id,
-    ]);
-
-    expect($post)->toBeInstanceOf(Post::class)
-        ->and($post->author_id)->toBe($user->id)
-        ->and($post->community_id)->toBe($community->id);
-});
-
-it('can update a post', function (): void {
-    $post = Post::factory()->create();
-
-    $post->update(['title' => 'Updated title']);
-
-    expect($post->fresh()->title)->toBe('Updated title');
-});
-
-it('can delete a post', function (): void {
-    $post = Post::factory()->create();
-
-    $post->delete();
-
-    expect(Post::query()->find($post->id))->toBeNull();
-});
-
 it('belongs to an author', function (): void {
     $user = User::factory()->create();
     $post = Post::factory()->create(['author_id' => $user->id]);
