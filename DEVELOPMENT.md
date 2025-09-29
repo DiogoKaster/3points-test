@@ -1,3 +1,13 @@
+# Início do projeto
+
+Como o docker-compose no projeto é um .env.yml, alterei o nome para
+que eu pudesse utilizar o padrão e subir os serviços com
+docker compose up -d. Confesso que é uma preferência individual,
+pois acho o docker maravilhoso pra se trabalhar em projetos
+de equipe, facilita muita coisa.
+
+No restante, apenas copiei o .env.docker para meu .env, nada mais.
+
 # Visão geral da solução
 
 Primeiramente, fiz uma análise como realmente iria funcionar a dinâmica de
@@ -31,3 +41,5 @@ Votes (user_id, votable_id, votable_type, value)
 > em geral, isso facilita a query que o sistema faz já que só vai ser necessário
 > realizar um incremento ou decremento no votes para ter registrado no post se ele está com
 > contagem positiva ou negativa.
+
+## Recursos do admin
