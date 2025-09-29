@@ -12,7 +12,7 @@ it('belongs to an author', function (): void {
     $post = Post::factory()->create(['author_id' => $user->id]);
 
     expect($post->author)->toBeInstanceOf(User::class)
-        ->and($post->author->id)->toBe($user->id);
+        ->and($post->author->is($user))->toBeTrue();
 });
 
 it('belongs to a community', function (): void {
@@ -20,7 +20,7 @@ it('belongs to a community', function (): void {
     $post = Post::factory()->create(['community_id' => $community->id]);
 
     expect($post->community)->toBeInstanceOf(Community::class)
-        ->and($post->community->id)->toBe($community->id);
+        ->and($post->community->is($community))->toBeTrue();
 });
 
 it('has many comments', function (): void {

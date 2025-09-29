@@ -17,7 +17,7 @@ it('belongs to an author', function (): void {
         'author_id' => $this->user->id,
     ]);
 
-    expect($community->author_id)->toBe($this->user->id);
+    expect($community->author->is($this->user))->toBeTrue();
 });
 
 it('can have members', function (): void {
@@ -43,7 +43,7 @@ it('can have posts', function (): void {
     ]);
 
     expect($community->posts)->toHaveCount(1)
-        ->and($community->posts->first()->id)->toBe($post->id);
+        ->and($community->posts->first()?->is($post))->toBeTrue();
 });
 
 it('can upload a cover image', function (): void {
