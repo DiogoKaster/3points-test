@@ -1,3 +1,8 @@
+<?php
+
+declare(strict_types=1);
+
+?>
 <x-layouts.guest>
     <main class="mx-auto">
         <div>
@@ -10,3 +15,4 @@
         </div>
     </main>
 </x-layouts.guest>
+<?php 

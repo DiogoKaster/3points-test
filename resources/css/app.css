@@ -5,8 +5,87 @@
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
     --font-sans:
         'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+
+    --color-elevation-surface: #fbfbff;
+    --color-elevation-01dp: #f7f8fc;
+    --color-elevation-02dp: #f2f4fa;
+    --color-elevation-03dp: #edeff7;
+    --color-elevation-04dp: #e8ebf5;
+    --color-elevation-05dp: #e2e6f2;
+
+    --color-outline-high: #99999f;
+    --color-outline-medium: #7c7c83;
+    --color-outline-low: #5e5e64;
+    --color-outline-dark: #2c2c2d;
+    --color-outline-light: #e8e9f1;
+
+    --color-icon-high: #09090a;
+    --color-icon-medium: #868689;
+    --color-icon-low: #b9b9be;
+    --color-icon-dark: #09090a;
+    --color-icon-light: #f5f5ff;
+
+    --color-text-hight: #09090a;
+    --color-text-medium: #4f4f4f;
+    --color-text-low: #707070;
+    --color-text-light: #fdfdfd;
+    --color-text-dark: #09090a;
+
+    --color-helper-success: #03ad00;
+    --color-helper-warning: #ecc707;
+    --color-helper-error: #e72323;
+    --color-neutral-neutral: #208bee;
+
+    --font-family-primary: 'Satoshi', ui-sans-serif, system-ui, sans-serif;
+    --font-family-secondary: 'Cal Sans', ui-sans-serif, system-ui, sans-serif;
+
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 700;
+
+    --leading-xs: 1.5;
+    --leading-default: 1;
+
+    --text-3xs: 0.75rem; /* 12px */
+    --text-2xs: 0.875rem; /* 14px */
+    --text-xs: 1rem; /* 16px */
+    --text-sm: 1.25rem; /* 20px */
+    --text-md: 1.5rem; /* 24px */
+    --text-lg: 2rem; /* 32px */
+    --text-xl: 2.5rem; /* 40px */
+    --text-2xl: 2.75rem; /* 44px */
+    --text-3xl: 3rem; /* 48px */
+    --text-4xl: 4rem; /* 64px */
+    --text-display: 5rem; /* 80px */
+    --text-giant: 6rem; /* 96px */
+}
+
+@layer theme {
+    :root,
+    :host {
+        @variant dark {
+            --color-elevation-surface: #09090a;
+            --color-elevation-01dp: #0f0f10;
+            --color-elevation-02dp: #131314;
+            --color-elevation-03dp: #151516;
+            --color-elevation-04dp: #181819;
+            --color-elevation-05dp: #1c1c1f;
+            --color-icon-high: #f5f5ff;
+            --color-icon-medium: #707070;
+            --color-icon-low: #7b7b7b;
+            --color-icon-dark: #09090a;
+            --color-icon-light: #f5f5ff;
+            --color-text-hight: #fdfdfd;
+            --color-text-medium: #9c9c9c;
+            --color-text-low: #7a7a7a;
+            --color-text-light: #09090a;
+            --color-text-dark: #fdfdfd;
+        }
+    }
 }

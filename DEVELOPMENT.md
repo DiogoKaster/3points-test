@@ -43,3 +43,12 @@ Votes (user_id, votable_id, votable_type, value)
 > contagem positiva ou negativa.
 
 ## Recursos do admin
+
+Para já ser possível criar comunidades de forma dinâmica, o primeiro resource que fiz
+e que também é o central do sistema, foi o de comunidades. Em um futuro, irei
+criar os resources relacionados como de posts, comentários e votos também.
+
+## Layout
+
+Para o layout, inicialmente defini as cores temáticas definidas no Figma com seus
+respectivos nomes, tentei manter o máximo de fidelidade quanto a nomes de variáveis.
