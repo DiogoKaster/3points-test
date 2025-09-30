@@ -63,7 +63,7 @@ da minha visão se trata de um componente em comum de todo o sistema, independen
 o usuário está logado ou não, além da sidebar também limitar o espaço que o conteúdo e navbar
 ocupam, então faz mais sentido ser o primeiro componente da aplicação e disponível em todo o layout.
 
-### UserCommunitiesSidebar
+### Componente UserCommunitiesSidebar
 
 Aqui eu fiz uma decisão de transformar os links de comunidades como um componente livewire
 por alguns motivos. Primeiro que facilita a busca dos dados, queries das comunidades e etc.
@@ -79,3 +79,10 @@ para lidar com autenticação. Eu pensei por um momento em só construir um pain
 do filament para lidar com isso, mas quis não perder muito tempo. Instalei
 o Breeze e fiz algumas alterações na estilização, além de excluir arquivos
 que não eram necessários para esse teste.
+
+## Componente CommunityPage
+
+As razões pelo qual escolhi criar um componente livewire dessa página são as
+mesma do UserCommunitiesSidebar, em geral, todos os componentes livewire que eu
+criar tem a mesma motivação por trás. Como essa página irá lidar com operação
+de entrada de membros e criação de posts, acho válida a separação também.

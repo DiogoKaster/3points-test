@@ -8,7 +8,7 @@ declare(strict_types=1);
     <div>
         <!-- Feed -->
         <x-feed>
-            <!-- Posts -->
+            <livewire:community-page :community="$community" />
         </x-feed>
     </div>
 </x-layouts.guest>
