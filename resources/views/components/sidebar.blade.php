@@ -19,7 +19,7 @@ declare(strict_types=1);
     <div class="space-y-8">
         <div class="space-y-4">
             <x-sidebar-link href="/" icon="home">Home</x-sidebar-link>
-            <x-sidebar-link href="/" icon="home">Explorar comunidades</x-sidebar-link>
+            <x-sidebar-link href="{{ route('communities.index') }}" icon="home">Explorar comunidades</x-sidebar-link>
             @auth
                 <x-sidebar-link href="/" icon="home">Perfil</x-sidebar-link>
             @endauth
