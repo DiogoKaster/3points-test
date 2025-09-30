@@ -3,16 +3,14 @@
 declare(strict_types=1);
 
 ?>
+
 <x-layouts.guest>
-    <main class="mx-auto">
-        <div>
-            <!-- Left Sidebar -->
-            <x-sidebar />
-            <!-- Feed -->
-            <x-feed>
-                <!-- Posts -->
-            </x-feed>
-        </div>
-    </main>
+    <div>
+        <!-- Feed -->
+        <x-feed>
+            <!-- Posts -->
+        </x-feed>
+    </div>
 </x-layouts.guest>
-<?php 
+
+<?php

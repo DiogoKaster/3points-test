@@ -52,3 +52,22 @@ criar os resources relacionados como de posts, comentários e votos também.
 
 Para o layout, inicialmente defini as cores temáticas definidas no Figma com seus
 respectivos nomes, tentei manter o máximo de fidelidade quanto a nomes de variáveis.
+
+Removi também a tag main do arquivo welcome.blade.php, que agora é home.blade.php,
+pois a main com seu padding é algo comum de todo o layout.
+
+### Sidebar
+
+Uma alteração de layout que eu fiz foi trocar o lugar onde a sidebar ficar no layout. Como,
+da minha visão se trata de um componente em comum de todo o sistema, independente se
+o usuário está logado ou não, além da sidebar também limitar o espaço que o conteúdo e navbar
+ocupam, então faz mais sentido ser o primeiro componente da aplicação e disponível em todo o layout.
+
+### UserCommunitiesSidebar
+
+Aqui eu fiz uma decisão de transformar os links de comunidades como um componente livewire
+por alguns motivos. Primeiro que facilita a busca dos dados, queries das comunidades e etc.
+Segundo, que quero logo mais deixar esse componente reativo quando o usuário
+entrar em uma nova comunidade por meio de um $refresh dentro do componente
+com um listener do evento de entrada em comunidade. Dessa forma, o usuário irá ver a sidebar atualizar no momento em que entrar em uma comunidade nova.
+Além de claro, deixar a estrutura do front mais componentizada.
