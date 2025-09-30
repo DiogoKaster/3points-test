@@ -3,11 +3,10 @@
 declare(strict_types=1);
 
 ?>
+
 <x-layouts.guest>
     <main class="mx-auto">
         <div>
-            <!-- Left Sidebar -->
-            <x-sidebar />
             <!-- Feed -->
             <x-feed>
                 <!-- Posts -->
@@ -15,4 +14,5 @@ declare(strict_types=1);
         </div>
     </main>
 </x-layouts.guest>
-<?php 
+
+<?php

@@ -21,12 +21,19 @@ declare(strict_types=1);
         <!-- Styles / Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="min-h-full">
-        <!-- Top Nav -->
-        <x-navbar />
+    <body class="flex min-h-full">
+        <!-- Sidebar -->
+        <x-sidebar />
 
-        <!-- Content -->
-        {{ $slot }}
+        <div class="flex flex-1 flex-col">
+            <!-- Top Nav -->
+            <x-navbar />
+
+            <main class="p-8">
+                <!-- Content -->
+                {{ $slot }}
+            </main>
+        </div>
     </body>
 </html>
 

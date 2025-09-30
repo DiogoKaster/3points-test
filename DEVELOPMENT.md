@@ -52,3 +52,10 @@ criar os resources relacionados como de posts, comentários e votos também.
 
 Para o layout, inicialmente defini as cores temáticas definidas no Figma com seus
 respectivos nomes, tentei manter o máximo de fidelidade quanto a nomes de variáveis.
+
+### Sidebar
+
+Uma alteração de layout que eu fiz foi trocar o lugar onde a sidebar ficar no layout. Como,
+da minha visão se trata de um componente em comum de todo o sistema, independente se
+o usuário está logado ou não, além da sidebar também limitar o espaço que o conteúdo e navbar
+ocupam, então faz mais sentido ser o primeiro componente da aplicação e disponível em todo o layout.
