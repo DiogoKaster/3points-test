@@ -13,7 +13,7 @@ declare(strict_types=1);
             <!-- Top Nav -->
             <x-navbar />
 
-            <main class="p-8">
+            <main class="p-4 md:p-8">
                 <!-- Content -->
                 {{ $slot }}
             </main>
