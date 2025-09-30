@@ -12,6 +12,11 @@ final class EditCommunity extends EditRecord
 {
     protected static string $resource = CommunityResource::class;
 
+    public function hasCombinedRelationManagerTabsWithContent(): bool
+    {
+        return true;
+    }
+
     protected function getHeaderActions(): array
     {
         return [
