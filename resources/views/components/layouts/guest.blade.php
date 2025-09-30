@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 ?>
+
 <x-layouts.partials.head>
     <body class="flex min-h-full">
         <!-- Sidebar -->
@@ -19,4 +20,5 @@ declare(strict_types=1);
         </div>
     </body>
 </x-layouts.partials.head>
-<?php 
+
+<?php
