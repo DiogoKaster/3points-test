@@ -19,4 +19,11 @@ final class CommunityController extends Controller
             'communities' => $communities,
         ]);
     }
+
+    public function show(Community $community): View
+    {
+        return view('communities.show', [
+            'community' => $community,
+        ]);
+    }
 }

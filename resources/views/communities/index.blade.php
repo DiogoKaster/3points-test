@@ -16,7 +16,7 @@ declare(strict_types=1);
                         $avatarUrl = $community->getFirstMediaUrl('avatars');
                     @endphp
 
-                    <a href="{{ route('communities.index') }}" class="block">
+                    <a href="{{ route('communities.show', $community->slug) }}" class="block">
                         <x-card :elevation="2">
                             <div class="flex items-center space-x-4">
                                 @if ($avatarUrl)

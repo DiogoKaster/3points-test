@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', static fn () => view('home'))->name('home');
 Route::get('/communities', [CommunityController::class, 'index'])->name('communities.index');
+Route::get('/c/{slug}', [CommunityController::class, 'show'])->name('communities.show');
 
 Route::middleware('auth')->group(function (): void {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
