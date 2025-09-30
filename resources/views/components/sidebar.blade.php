@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 ?>
 
-<aside class="border-r-outline-dark w-sm space-y-12 border-r p-8">
+<aside class="border-r-helper-outline w-sm space-y-12 border-r p-8">
     <div class="flex items-center justify-between space-x-0.5">
         <div class="flex items-center space-x-2">
             <x-heroicon-o-academic-cap class="text-icon-high h-6 w-6" />
