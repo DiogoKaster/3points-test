@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 ?>
+
 <aside class="border-r-outline-dark w-sm space-y-12 border-r p-8">
     <div class="flex items-center justify-between space-x-0.5">
         <div class="flex items-center space-x-2">
@@ -25,14 +26,9 @@ declare(strict_types=1);
         </div>
 
         @auth
-            <div class="space-y-4">
-                <h3 class="font-family-secondary text-text-medium text-xs">Minhas comunidades</h3>
-                <div class="space-y-4">
-                    <x-sidebar-link href="/" icon="home">Home</x-sidebar-link>
-                    <x-sidebar-link href="/" icon="home">Home</x-sidebar-link>
-                </div>
-            </div>
+            <livewire:user-communities-sidebar />
         @endauth
     </div>
 </aside>
-<?php 
+
+<?php
