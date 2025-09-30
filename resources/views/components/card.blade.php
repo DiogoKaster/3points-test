@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 ?>
+
 @props([
     'elevation' => 1,
 ])
@@ -26,4 +27,5 @@ declare(strict_types=1);
 >
     {{ $slot }}
 </div>
-<?php 
+
+<?php
