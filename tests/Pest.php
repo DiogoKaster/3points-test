@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,17 +16,9 @@ use Tests\TestCase;
 |
 */
 
-pest()->group('feature')->in('Feature');
-pest()->group('unit')->in('Unit');
-pest()->group('browser')->in('Browser');
-
 pest()->extend(TestCase::class)
     ->use(RefreshDatabase::class)
-    ->in('Feature', 'Unit', 'Browser');
-
-pest()->browser()->inFirefox();
-
-pest()->printer()->compact();
+    ->in('Feature');
 
 /*
 |--------------------------------------------------------------------------
@@ -38,8 +30,6 @@ pest()->printer()->compact();
 | to assert different things. Of course, you may extend the Expectation API at any time.
 |
 */
-
-expect()->extend('toBeOne', fn () => $this->toBe(1));
 
 /*
 |--------------------------------------------------------------------------

@@ -71,3 +71,11 @@ Segundo, que quero logo mais deixar esse componente reativo quando o usuário
 entrar em uma nova comunidade por meio de um $refresh dentro do componente
 com um listener do evento de entrada em comunidade. Dessa forma, o usuário irá ver a sidebar atualizar no momento em que entrar em uma comunidade nova.
 Além de claro, deixar a estrutura do front mais componentizada.
+
+## Login e Registro
+
+Como mencionado no discord, vi que foi permitido utilizar o laravel breeze
+para lidar com autenticação. Eu pensei por um momento em só construir um painel
+do filament para lidar com isso, mas quis não perder muito tempo. Instalei
+o Breeze e fiz algumas alterações na estilização, além de excluir arquivos
+que não eram necessários para esse teste.
