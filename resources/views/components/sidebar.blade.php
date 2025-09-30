@@ -13,7 +13,7 @@ declare(strict_types=1);
                 <p class="text-text-medium">Community</p>
             </div>
         </div>
-        <x-heroicon-o-x-mark class="text-icon-high h-6 w-6" />
+        {{-- <x-heroicon-o-x-mark class="text-icon-high h-6 w-6" /> --}}
     </div>
 
     <div class="space-y-8">

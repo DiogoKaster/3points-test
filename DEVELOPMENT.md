@@ -53,6 +53,9 @@ criar os resources relacionados como de posts, comentários e votos também.
 Para o layout, inicialmente defini as cores temáticas definidas no Figma com seus
 respectivos nomes, tentei manter o máximo de fidelidade quanto a nomes de variáveis.
 
+Removi também a tag main do arquivo welcome.blade.php, que agora é home.blade.php,
+pois a main com seu padding é algo comum de todo o layout.
+
 ### Sidebar
 
 Uma alteração de layout que eu fiz foi trocar o lugar onde a sidebar ficar no layout. Como,
