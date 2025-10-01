@@ -28,10 +28,12 @@ final class CommentForm extends Component
             return;
         }
 
-        $this->validate();
+        $this->validate([
+            'body' => 'required|min:3|max:255',
+        ]);
 
         $this->commentable->comments()->create([
-            'user_id' => Auth::id(),
+            'author_id' => Auth::id(),
             'body' => $this->body,
         ]);
 

@@ -47,8 +47,16 @@ declare(strict_types=1);
         <livewire:comment-form :commentable="$post" wire:key="comment-form-{{ $post->id }}" />
     </div>
 
-    <x-card>
+    <x-card class="space-y-8">
         <x-title>Todas as respostas</x-title>
+
+        @forelse ($post->comments()->whereNull('parent_id')->latest()->get() as $comment)
+            <livewire:comment-card :comment="$comment" wire:key="comment-{{ $comment->id }}" />
+        @empty
+            <x-card :elevation="2" class="border-dashed text-center">
+                <p class="text-text-medium">Ainda não há comentários neste post. Seja o primeiro!</p>
+            </x-card>
+        @endforelse
     </x-card>
 </div>
 

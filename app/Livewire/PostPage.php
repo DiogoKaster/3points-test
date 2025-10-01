@@ -15,6 +15,10 @@ final class PostPage extends Component
 {
     public Post $post;
 
+    protected $listeners = [
+        'commentCreated' => '$refresh',
+    ];
+
     public function mount(Post $post): void
     {
         $this->post = $post;
