@@ -35,18 +35,19 @@ declare(strict_types=1);
         <x-title>
             {{ $post->title }}
         </x-title>
-        <div class="prose prose-sm prose-invert text-text-medium line-clamp-5">
+        <div class="prose prose-sm prose-invert text-text-medium text-2xs line-clamp-5">
             {!! Str::markdown($post->body) !!}
         </div>
     </div>
 
-    <div class="mt-6 flex items-center gap-10">
+    <div class="mt-6 flex items-center gap-8">
         <x-filament::icon-button
             wire:click.prevent="showPost"
             icon="heroicon-o-chat-bubble-oval-left"
             size="sm"
             color="gray"
         />
+        <span class="text-icon-medium">{{ $post->comments()->whereNull('parent_id')->count() }}</span>
         <x-filament::icon-button
             wire:click.stop.prevent="upvote"
             icon="heroicon-o-hand-thumb-up"

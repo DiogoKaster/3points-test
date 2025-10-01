@@ -98,3 +98,12 @@ fazer a modal com o form de criação de posts dentro da página da comunidade.
 Além das razões já comentadas anteriormente, esse componente será reutilizado em duas páginas:
 home e community page, pois ambas mostram postagens das comunidades que o usuário
 faz parte ou explora.
+
+### Componente CommentCard
+
+Aqui, vou confessar que a IA teve muito mérito. A ideia principal que eu
+formulei para o sistema de respostas foi, com o uso do AlpineJS fazer um toggle
+que iria apenas mostrar as respostas dos comentários. No entanto, pedindo sugestão
+pra IA, ela comentou sobre usar um #Computed do Livewire, o que iria fazer com que
+as respostas dos comentários fossem carregados conforme interagir com o sistema.
+Foi uma ótima maneira de ganhar performance e impedir que muitos comentários fossem carregados.
