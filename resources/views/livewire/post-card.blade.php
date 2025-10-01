@@ -42,7 +42,7 @@ declare(strict_types=1);
 
     <div class="mt-6 flex items-center gap-10">
         <x-filament::icon-button
-            wire:click.stop.prevent="upvote"
+            wire:click.prevent="showPost"
             icon="heroicon-o-chat-bubble-oval-left"
             size="sm"
             color="gray"
