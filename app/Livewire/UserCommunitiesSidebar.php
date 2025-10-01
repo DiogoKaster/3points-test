@@ -14,20 +14,24 @@ final class UserCommunitiesSidebar extends Component
 {
     public Collection $userCommunities;
 
+    protected $listeners = [
+        'refresh-sidebar-communities' => '$refresh',
+    ];
+
     public function mount(): void
+    {
+        $this->userCommunities = collect();
+    }
+
+    public function render(): Factory|View|\Illuminate\View\View
     {
         if (Auth::check()) {
             $this->userCommunities = Auth::user()
                 ->communitiesJoined()
                 ->withCount('posts')
                 ->get();
-        } else {
-            $this->userCommunities = collect();
         }
-    }
 
-    public function render(): Factory|View|\Illuminate\View\View
-    {
         return view('livewire.user-communities-sidebar');
     }
 }

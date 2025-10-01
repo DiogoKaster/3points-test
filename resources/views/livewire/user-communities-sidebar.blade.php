@@ -10,7 +10,7 @@ declare(strict_types=1);
     <div class="space-y-4">
         @foreach ($userCommunities as $community)
             <a
-                href="/"
+                href="{{ route('communities.show', $community->slug) }}"
                 class="hover:bg-elevation-02dp hover:outline-helper-outline flex items-center justify-between rounded-lg p-4 hover:outline"
             >
                 @php

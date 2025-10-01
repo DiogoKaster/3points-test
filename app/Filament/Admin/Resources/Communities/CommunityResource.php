@@ -7,6 +7,7 @@ namespace App\Filament\Admin\Resources\Communities;
 use App\Filament\Admin\Resources\Communities\Pages\CreateCommunity;
 use App\Filament\Admin\Resources\Communities\Pages\EditCommunity;
 use App\Filament\Admin\Resources\Communities\Pages\ListCommunities;
+use App\Filament\Admin\Resources\Communities\RelationManagers\PostsRelationManager;
 use App\Filament\Admin\Resources\Communities\Schemas\CommunityForm;
 use App\Filament\Admin\Resources\Communities\Tables\CommunitiesTable;
 use App\Models\Community;
@@ -37,7 +38,7 @@ final class CommunityResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            PostsRelationManager::class,
         ];
     }
 

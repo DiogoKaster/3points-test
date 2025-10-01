@@ -5,7 +5,7 @@ declare(strict_types=1);
 ?>
 
 <x-layouts.partials.head>
-    <body class="flex min-h-full">
+    <body class="flex h-screen overflow-hidden">
         <!-- Sidebar -->
         <x-sidebar />
 
@@ -13,7 +13,7 @@ declare(strict_types=1);
             <!-- Top Nav -->
             <x-navbar />
 
-            <main class="p-8">
+            <main class="overflow-y-auto p-4 md:p-8">
                 <!-- Content -->
                 {{ $slot }}
             </main>

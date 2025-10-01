@@ -5,7 +5,7 @@ declare(strict_types=1);
 ?>
 
 <header
-    class="bg-elevation-01dp border-b-helper-outline sticky top-0 flex h-16 items-center justify-end border-b px-8 py-4"
+    class="bg-elevation-01dp border-b-helper-outline sticky top-0 flex h-16 items-center justify-center border-b px-8 py-4 md:justify-end"
 >
     <div class="gap flex h-8 items-center space-x-8">
         @auth
