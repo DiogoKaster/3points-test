@@ -4,22 +4,10 @@ declare(strict_types=1);
 
 ?>
 
-@php
-    $commentAuthorAvatarUrl = $comment->author->getFilamentAvatarUrl();
-@endphp
-
 <x-card :elevation="2" @class(['hover:border-outline-low space-y-4', $isReply ? 'border-none' : ''])>
-    <div class="flex items-center">
-        <div class="flex flex-grow flex-row gap-2">
-            @if ($commentAuthorAvatarUrl)
-                <img
-                    src="{{ $commentAuthorAvatarUrl }}"
-                    alt="avatar {{ $comment->author->name }}"
-                    class="h-8 w-8 rounded-full object-cover"
-                />
-            @else
-                <x-heroicon-o-user-circle class="text-text-medium h-8 w-8" />
-            @endif
+    <div class="flex items-center justify-between">
+        <div class="flex gap-2">
+            <x-avatar :model="$comment->author" :fi-avatar="true" alt="{{$comment->author->name}}" />
 
             <div class="text-2xs text-text-medium flex items-center gap-1">
                 <p>
@@ -45,7 +33,7 @@ declare(strict_types=1);
         </div>
     </div>
 
-    <div class="mt-6 flex items-center gap-8">
+    <div class="mt-6 flex flex-wrap items-center gap-8">
         @if (! $isReply)
             <x-filament::icon-button
                 wire:click.prevent="toggleReplies"
@@ -85,7 +73,9 @@ declare(strict_types=1);
             @forelse ($this->comment->replies as $reply)
                 <livewire:comment-card :isReply="true" :comment="$reply" wire:key="comment-reply-{{ $reply->id }}" />
             @empty
-                
+                <x-card :elevation="2" class="border-dashed text-center">
+                    <p class="text-text-medium">Sem comentários!</p>
+                </x-card>
             @endforelse
         </div>
     @endif

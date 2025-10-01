@@ -8,6 +8,9 @@ de equipe, facilita muita coisa.
 
 No restante, apenas copiei o .env.docker para meu .env, nada mais.
 
+Outro ponto foi a instalação do laravel breeze para lidar com autenticação
+no sistema. Além disso, nenhuma outra alteração foi feita.
+
 # Visão geral da solução
 
 Primeiramente, fiz uma análise como realmente iria funcionar a dinâmica de
@@ -19,6 +22,18 @@ dinâmica como requisitado.
 Depois disso, a parte do subreddit em si é fácil de entender, visto que é uma
 estrutura simples, onde um subreddit terá vários posts e um post terá vários
 comentários.
+
+## Uso de IA
+
+Em geral, utilizei IA durante todo o processo como um auxiliar. A maneira
+que utilizo ela, é muito mais para ouvir sugestões do que realmente realizar
+alguma tarefa, a não ser que seja muito repetitiva e maçante.
+
+Então, de maneira resumida, eu formulo uma ideia ou design e peço para a IA
+se existe outra maneira melhor ou mais prática de realizar aquilo. Os únicos momentos
+do sistema em que realmente decidi trocar minha ideia inicial pela da IA foram 2 em específico.
+O primeiro no uso do #Computed para melhor performance de carregamento de respostas e
+em algumas estilizações para que o sistema fique adaptado ao mobile.
 
 ## Estrutura de banco de dados
 
@@ -115,3 +130,17 @@ a unica diferença sendo quais posts seriam renderizados. A única parte que tiv
 de tomar cuidade, foi como carregar os dados do sistema, afinal são queries bem grandes.
 Utilizei a IA para melhorar as queries que eu formulei, e depois só guardei os dados
 em cache para evitar que muitas queries dessa magnitute fossem disparadas.
+
+## Pontos que eu gostaria de melhorar
+
+O primeiro é o design de login e registro, o laravel breeze trás uma UI pronta, mas
+não dediquei tanto tempo para deixar ela mais coerente com o design do sistema.
+
+Algumas pequenas funcionalidades extras como salvar post, compartilhar, editar comentários
+e etc. E também, refatorar alguns componente, pois sei que poderia ter reutilizado mais
+funcionalidades entre eles.
+
+No restante, fiquei bem feliz com o sistema, comecei o projeto um pouco atrasado, mas foi muito divertido.
+Espero que gostem e deem um feedback construtivo para saber onde eu preciso
+melhorar. Obrigado equipe da 3Pontos e Daniel principalmente por toda a ajuda na comunidade
+PHP/Laravel/Livewire/Filament...

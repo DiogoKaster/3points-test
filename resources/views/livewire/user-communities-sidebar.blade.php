@@ -13,20 +13,8 @@ declare(strict_types=1);
                 href="{{ route('communities.show', $community->slug) }}"
                 class="hover:bg-elevation-02dp hover:outline-helper-outline flex items-center justify-between rounded-lg p-4 hover:outline"
             >
-                @php
-                    $avatarUrl = $community->getFirstMediaUrl('avatars');
-                @endphp
-
                 <div class="flex items-center gap-4">
-                    @if ($avatarUrl)
-                        <img
-                            src="{{ $avatarUrl }}"
-                            alt="avatar {{ $community->name }}"
-                            class="h-5 w-5 rounded-full object-cover"
-                        />
-                    @else
-                        <x-heroicon-o-user-circle class="text-text-medium h-5 w-5" />
-                    @endif
+                    <x-avatar collection="avatars" :model="$community" alt="{{$community->name}}" size="xs" />
 
                     <p class="text-text-medium text-xs">
                         {{ $community->name }}

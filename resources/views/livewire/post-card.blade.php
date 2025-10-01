@@ -4,22 +4,10 @@ declare(strict_types=1);
 
 ?>
 
-@php
-    $postAuthorAvatarUrl = $post->author->getFilamentAvatarUrl();
-@endphp
-
 <x-card :elevation="2" class="hover:border-outline-low cursor-pointer space-y-4" wire:click.prevent="showPost">
-    <div class="flex items-center">
-        <div class="flex flex-grow flex-row gap-2">
-            @if ($postAuthorAvatarUrl)
-                <img
-                    src="{{ $postAuthorAvatarUrl }}"
-                    alt="avatar {{ $post->author->name }}"
-                    class="h-8 w-8 rounded-full object-cover"
-                />
-            @else
-                <x-heroicon-o-user-circle class="text-text-medium h-8 w-8" />
-            @endif
+    <div class="flex items-center justify-between">
+        <div class="flex gap-2">
+            <x-avatar :model="$post->author" :fi-avatar="true" alt="{{$post->author->name}}" />
 
             <div class="space-y-1">
                 <div class="text-2xs text-text-medium flex items-center gap-1">

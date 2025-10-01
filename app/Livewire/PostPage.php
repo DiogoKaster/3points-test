@@ -18,6 +18,7 @@ final class PostPage extends Component
 
     protected $listeners = [
         'commentCreated' => '$refresh',
+        'commentDeleted' => '$refresh',
     ];
 
     public function mount(Post $post): void

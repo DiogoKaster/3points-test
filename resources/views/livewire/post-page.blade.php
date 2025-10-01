@@ -10,15 +10,7 @@ declare(strict_types=1);
 
 <div class="space-y-8">
     <div class="flex items-center gap-2">
-        @if ($postAuthorAvatarUrl)
-            <img
-                src="{{ $postAuthorAvatarUrl }}"
-                alt="avatar {{ $post->author->name }}"
-                class="h-8 w-8 rounded-full object-cover"
-            />
-        @else
-            <x-heroicon-o-user-circle class="text-text-medium h-8 w-8" />
-        @endif
+        <x-avatar :model="$post->author" :fi-avatar="true" alt="{{$post->author->name}}" size="md" />
 
         <div class="space-y-1">
             <div class="text-2xs text-text-medium flex items-center gap-1">
