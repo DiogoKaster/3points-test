@@ -3,7 +3,8 @@
 declare(strict_types=1);
 
 ?>
-<x-app-layout>
+
+<x-guest-layout>
     <x-slot name="header">
         <h2 class="text-xl leading-tight font-semibold text-gray-800 dark:text-gray-200">
             {{ __('Profile') }}
@@ -12,13 +13,13 @@ declare(strict_types=1);
 
     <div class="py-12">
         <div class="mx-auto max-w-7xl space-y-6 sm:px-6 lg:px-8">
-            <div class="bg-white p-4 shadow sm:rounded-lg sm:p-8 dark:bg-gray-800">
+            <div class="sm:rounded-lg">
                 <div class="max-w-xl">
                     @include('profile.partials.update-profile-information-form')
                 </div>
             </div>
 
-            <div class="bg-white p-4 shadow sm:rounded-lg sm:p-8 dark:bg-gray-800">
+            <div class="sm:rounded-lg">
                 <div class="max-w-xl">
                     @include('profile.partials.update-password-form')
                 </div>
@@ -31,5 +32,6 @@ declare(strict_types=1);
             {{-- </div> --}}
         </div>
     </div>
-</x-app-layout>
-<?php 
+</x-guest-layout>
+
+<?php

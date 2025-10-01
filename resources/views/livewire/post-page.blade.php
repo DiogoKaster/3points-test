@@ -21,7 +21,7 @@ declare(strict_types=1);
         @endif
 
         <div class="space-y-1">
-            <div class="text-2xs text-text-high flex items-center gap-1">
+            <div class="text-2xs text-text-medium flex items-center gap-1">
                 <p>
                     @
                     <span></span>
