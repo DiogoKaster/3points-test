@@ -12,10 +12,6 @@ declare(strict_types=1);
                 <x-title>Veja as comunidades mais populares no momento!</x-title>
 
                 @foreach ($communities as $community)
-                    @php
-                        $avatarUrl = $community->getFirstMediaUrl('avatars');
-                    @endphp
-
                     <a
                         href="{{ route('communities.show', $community->slug) }}"
                         class="block"
@@ -23,15 +19,12 @@ declare(strict_types=1);
                     >
                         <x-card :elevation="2">
                             <div class="flex items-center space-x-4">
-                                @if ($avatarUrl)
-                                    <img
-                                        src="{{ $avatarUrl }}"
-                                        alt="avatar {{ $community->name }}"
-                                        class="h-12 w-12 rounded-full object-cover"
-                                    />
-                                @else
-                                    <x-heroicon-o-user-circle class="text-text-medium h-12 w-12" />
-                                @endif
+                                <x-avatar
+                                    collection="avatars"
+                                    :model="$community"
+                                    alt="{{$community->name}}"
+                                    size="md"
+                                />
 
                                 <div>
                                     <x-title>

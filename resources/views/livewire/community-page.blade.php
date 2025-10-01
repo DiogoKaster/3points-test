@@ -6,7 +6,6 @@ declare(strict_types=1);
 
 @php
     $coverUrl = $community->getFirstMediaUrl('covers');
-    $communityAvatarUrl = $community->getFirstMediaUrl('avatars');
 @endphp
 
 <div class="space-y-4 md:space-y-8">
@@ -15,16 +14,8 @@ declare(strict_types=1);
     @endif
 
     <div class="flex flex-col items-start gap-8 md:flex-row md:items-center md:justify-between">
-        <div class="flex flex-col items-start gap-8 sm:flex-row sm:items-center">
-            @if ($communityAvatarUrl)
-                <img
-                    src="{{ $communityAvatarUrl }}"
-                    alt="avatar {{ $community->name }}"
-                    class="h-16 w-16 rounded-full object-cover"
-                />
-            @else
-                <x-heroicon-o-user-circle class="text-text-medium h-16 w-16" />
-            @endif
+        <div class="flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+            <x-avatar collection="avatars" :model="$community" alt="{{$community->name}}" size="lg" />
 
             <div class="space-y-4">
                 <h1 class="font-family-secondary text-md">/c/ {{ $community->name }}</h1>

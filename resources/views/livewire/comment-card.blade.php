@@ -4,22 +4,10 @@ declare(strict_types=1);
 
 ?>
 
-@php
-    $commentAuthorAvatarUrl = $comment->author->getFilamentAvatarUrl();
-@endphp
-
 <x-card :elevation="2" @class(['hover:border-outline-low space-y-4', $isReply ? 'border-none' : ''])>
     <div class="flex items-center">
         <div class="flex flex-grow flex-row gap-2">
-            @if ($commentAuthorAvatarUrl)
-                <img
-                    src="{{ $commentAuthorAvatarUrl }}"
-                    alt="avatar {{ $comment->author->name }}"
-                    class="h-8 w-8 rounded-full object-cover"
-                />
-            @else
-                <x-heroicon-o-user-circle class="text-text-medium h-8 w-8" />
-            @endif
+            <x-avatar :model="$comment->author" :fi-avatar="true" alt="{{$comment->author->name}}" />
 
             <div class="text-2xs text-text-medium flex items-center gap-1">
                 <p>
