@@ -24,6 +24,7 @@ final class CommentCard extends Component
 
     protected $listeners = [
         'commentCreated' => '$refresh',
+        'commentDeleted' => '$refresh',
     ];
 
     public function mount(Comment $comment, bool $isReply = false): void
@@ -52,6 +53,18 @@ final class CommentCard extends Component
         }
 
         $this->comment->vote(Auth::user(), -1);
+    }
+
+    public function delete(): void
+    {
+        if (Auth::guest()) {
+            $this->redirect(route('login'));
+
+            return;
+        }
+
+        $this->comment->delete();
+        $this->dispatch('commentDeleted');
     }
 
     #[Computed]

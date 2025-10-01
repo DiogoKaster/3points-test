@@ -57,6 +57,10 @@ declare(strict_types=1);
                 <p class="text-text-medium">Ainda não há comentários neste post. Seja o primeiro!</p>
             </x-card>
         @endforelse
+
+        <div class="mt-8">
+            {{ $comments->links() }}
+        </div>
     </x-card>
 </div>
 

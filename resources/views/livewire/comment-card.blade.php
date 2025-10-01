@@ -9,26 +9,34 @@ declare(strict_types=1);
 @endphp
 
 <x-card :elevation="2" @class(['hover:border-outline-low space-y-4', $isReply ? 'border-none' : ''])>
-    <div class="flex items-center gap-2">
-        @if ($commentAuthorAvatarUrl)
-            <img
-                src="{{ $commentAuthorAvatarUrl }}"
-                alt="avatar {{ $comment->author->name }}"
-                class="h-8 w-8 rounded-full object-cover"
-            />
-        @else
-            <x-heroicon-o-user-circle class="text-text-medium h-8 w-8" />
-        @endif
+    <div class="flex items-center">
+        <div class="flex flex-grow flex-row gap-2">
+            @if ($commentAuthorAvatarUrl)
+                <img
+                    src="{{ $commentAuthorAvatarUrl }}"
+                    alt="avatar {{ $comment->author->name }}"
+                    class="h-8 w-8 rounded-full object-cover"
+                />
+            @else
+                <x-heroicon-o-user-circle class="text-text-medium h-8 w-8" />
+            @endif
 
-        <div class="text-2xs text-text-medium flex items-center gap-1">
-            <p>
-                @
-                <span></span>
-                {{ $comment->author->name }}
-            </p>
-            <span>&bull;</span>
-            <span>{{ $comment->created_at->diffForHumans() }}</span>
+            <div class="text-2xs text-text-medium flex items-center gap-1">
+                <p>
+                    @
+                    <span></span>
+                    {{ $comment->author->name }}
+                </p>
+                <span>&bull;</span>
+                <span>{{ $comment->created_at->diffForHumans() }}</span>
+            </div>
         </div>
+
+        @auth
+            @if (\Illuminate\Support\Facades\Auth::user()->is_admin || $comment->author->is(\Illuminate\Support\Facades\Auth::user()))
+                <x-filament::icon-button wire:click.prevent="delete" icon="heroicon-o-trash" size="sm" color="danger" />
+            @endif
+        @endauth
     </div>
 
     <div class="space-y-2">

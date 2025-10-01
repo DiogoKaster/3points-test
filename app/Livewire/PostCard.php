@@ -42,6 +42,19 @@ final class PostCard extends Component
         $this->post->vote(Auth::user(), -1);
     }
 
+    public function delete(): void
+    {
+        if (Auth::guest()) {
+            $this->redirect(route('login'));
+
+            return;
+        }
+
+        $this->post->delete();
+        $this->dispatch('postDeleted');
+        $this->dispatch('refresh-sidebar-communities');
+    }
+
     public function showPost(): RedirectResponse|Redirector
     {
         return redirect()->route('posts.show', [
