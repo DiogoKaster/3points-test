@@ -8,7 +8,7 @@ declare(strict_types=1);
     $commentAuthorAvatarUrl = $comment->author->getFilamentAvatarUrl();
 @endphp
 
-<x-card :elevation="2" class="hover:border-outline-low cursor-pointer space-y-4" wire:click.prevent="showPost">
+<x-card :elevation="2" @class(['hover:border-outline-low space-y-4', $isReply ? 'border-none' : ''])>
     <div class="flex items-center gap-2">
         @if ($commentAuthorAvatarUrl)
             <img
@@ -38,33 +38,49 @@ declare(strict_types=1);
     </div>
 
     <div class="mt-6 flex items-center gap-8">
+        @if (! $isReply)
+            <x-filament::icon-button
+                wire:click.prevent="toggleReplies"
+                icon="heroicon-o-chat-bubble-oval-left"
+                size="sm"
+                color="gray"
+            />
+            <span class="text-icon-medium">{{ $replies }}</span>
+        @endif
+
         <x-filament::icon-button
-            wire:click.prevent="showPost"
-            icon="heroicon-o-chat-bubble-oval-left"
-            size="sm"
-            color="gray"
-        />
-        <x-filament::icon-button
-            wire:click.stop.prevent="upvote"
+            wire:click.prevent="upvote"
             icon="heroicon-o-hand-thumb-up"
             size="sm"
             color="{{ $userVote === 1 ? 'success' : 'gray'}}"
         />
         <span class="text-icon-medium">{{ $comment->votes }}</span>
         <x-filament::icon-button
-            wire:click.stop.prevent="downvote"
+            wire:click.prevent="downvote"
             icon="heroicon-o-hand-thumb-down"
             size="sm"
             color="{{ $userVote === -1 ? 'danger' : 'gray'}}"
         />
-        <x-primary-button>Responder</x-primary-button>
+        @if (! $isReply)
+            <button class="text-text-low cursor-pointer text-xs" wire:click.prevent="toggleReplyForm">Responder</button>
+        @endif
     </div>
 
-    <div class="border-outline-dark ml-4 space-y-4 border-l-2 pl-4 md:ml-8 md:pl-8">
-        @foreach ($this->comment->replies as $reply)
-            <livewire:comment-card :comment="$reply" wire:key="comment-reply-{{ $reply->id }}" />
-        @endforeach
-    </div>
+    @if ($showReplyForm)
+        <div>
+            <livewire:comment-form :commentable="$comment" wire:key="reply-form-for-{{ $comment->id }}" />
+        </div>
+    @endif
+
+    @if ($showReplies)
+        <div class="space-y-4">
+            @forelse ($this->comment->replies as $reply)
+                <livewire:comment-card :isReply="true" :comment="$reply" wire:key="comment-reply-{{ $reply->id }}" />
+            @empty
+                
+            @endforelse
+        </div>
+    @endif
 </x-card>
 
 <?php

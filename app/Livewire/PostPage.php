@@ -24,6 +24,16 @@ final class PostPage extends Component
 
     public function render(): Factory|View|\Illuminate\View\View
     {
-        return view('livewire.post-page');
+        $comments = $this->post
+            ->comments()
+            ->with('replies')
+            ->withCount('replies')
+            ->whereNull('parent_id')
+            ->latest()
+            ->get();
+
+        return view('livewire.post-page', [
+            'comments' => $comments,
+        ]);
     }
 }

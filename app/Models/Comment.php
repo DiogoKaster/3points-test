@@ -20,6 +20,7 @@ final class Comment extends Model
 
     protected $fillable = [
         'author_id',
+        'post_id',
         'body',
         'votes',
     ];
@@ -54,6 +55,11 @@ final class Comment extends Model
     public function replies(): HasMany
     {
         return $this->hasMany(self::class, 'parent_id');
+    }
+
+    public function comments(): HasMany
+    {
+        return $this->replies();
     }
 
     protected function casts(): array

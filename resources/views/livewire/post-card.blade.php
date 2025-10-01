@@ -47,6 +47,7 @@ declare(strict_types=1);
             size="sm"
             color="gray"
         />
+        <span class="text-icon-medium">{{ $post->comments()->whereNull('parent_id')->count() }}</span>
         <x-filament::icon-button
             wire:click.stop.prevent="upvote"
             icon="heroicon-o-hand-thumb-up"

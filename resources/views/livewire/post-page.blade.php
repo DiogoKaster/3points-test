@@ -50,7 +50,7 @@ declare(strict_types=1);
     <x-card class="space-y-8">
         <x-title>Todas as respostas</x-title>
 
-        @forelse ($post->comments()->whereNull('parent_id')->latest()->get() as $comment)
+        @forelse ($comments as $comment)
             <livewire:comment-card :comment="$comment" wire:key="comment-{{ $comment->id }}" />
         @empty
             <x-card :elevation="2" class="border-dashed text-center">
