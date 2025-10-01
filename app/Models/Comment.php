@@ -19,6 +19,7 @@ final class Comment extends Model
     use HasVotes;
 
     protected $fillable = [
+        'user_id',
         'body',
         'votes',
     ];
