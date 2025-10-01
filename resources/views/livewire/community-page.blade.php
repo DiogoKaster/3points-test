@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 ?>
+
 @php
     $coverUrl = $community->getFirstMediaUrl('covers');
     $communityAvatarUrl = $community->getFirstMediaUrl('avatars');
@@ -46,52 +47,7 @@ declare(strict_types=1);
         <x-title>Veja todos os posts da comunidade</x-title>
 
         @forelse ($posts as $post)
-            @php
-                $postAuthorAvatarUrl = $post->author->getFilamentAvatarUrl();
-            @endphp
-
-            <x-card :elevation="2" class="space-y-4">
-                <div class="flex items-center gap-2">
-                    @if ($postAuthorAvatarUrl)
-                        <img
-                            src="{{ $postAuthorAvatarUrl }}"
-                            alt="avatar {{ $post->author->name }}"
-                            class="h-8 w-8 rounded-full object-cover"
-                        />
-                    @else
-                        <x-heroicon-o-user-circle class="text-text-medium h-8 w-8" />
-                    @endif
-
-                    <div class="text-2xs text-text-medium flex items-center gap-1">
-                        <p>
-                            @
-                            <span></span>
-                            {{ $post->author->name }}
-                        </p>
-                        <span>&bull;</span>
-                        <span>{{ $post->created_at->diffForHumans() }}</span>
-                    </div>
-                </div>
-
-                <div class="space-y-2">
-                    <x-title>
-                        {{ $post->title }}
-                    </x-title>
-                    <p class="text-text-medium line-clamp-5">
-                        {!! Str::markdown($post->body) !!}
-                    </p>
-                </div>
-
-                <div class="mt-6 flex items-center gap-10">
-                    <x-heroicon-o-chat-bubble-oval-left
-                        class="text-icon-medium hover:text-icon-high h-5 w-5 cursor-pointer"
-                    />
-                    <x-heroicon-o-hand-thumb-up class="text-icon-medium hover:text-icon-high h-5 w-5 cursor-pointer" />
-                    <x-heroicon-o-hand-thumb-down
-                        class="text-icon-medium hover:text-icon-high h-5 w-5 cursor-pointer"
-                    />
-                </div>
-            </x-card>
+            <livewire:post-card :post="$post" wire:key="post-{{ $post->id }}" />
         @empty
             <x-card :elevation="2" class="border-dashed text-center">
                 <p class="text-text-medium">Ainda não há posts nesta comunidade. Seja o primeiro!</p>
@@ -99,4 +55,5 @@ declare(strict_types=1);
         @endforelse
     </x-card>
 </div>
-<?php 
+
+<?php

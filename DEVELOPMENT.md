@@ -80,9 +80,15 @@ do filament para lidar com isso, mas quis não perder muito tempo. Instalei
 o Breeze e fiz algumas alterações na estilização, além de excluir arquivos
 que não eram necessários para esse teste.
 
-## Componente CommunityPage
+### Componente CommunityPage
 
 As razões pelo qual escolhi criar um componente livewire dessa página são as
 mesma do UserCommunitiesSidebar, em geral, todos os componentes livewire que eu
 criar tem a mesma motivação por trás. Como essa página irá lidar com operação
 de entrada de membros e criação de posts, acho válida a separação também.
+
+### Componente PostCard
+
+Além das razões já comentadas anteriormente, esse componente será reutilizado em duas páginas:
+home e community page, pois ambas mostram postagens das comunidades que o usuário
+faz parte ou explora.
