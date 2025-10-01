@@ -107,3 +107,11 @@ que iria apenas mostrar as respostas dos comentários. No entanto, pedindo suges
 pra IA, ela comentou sobre usar um #Computed do Livewire, o que iria fazer com que
 as respostas dos comentários fossem carregados conforme interagir com o sistema.
 Foi uma ótima maneira de ganhar performance e impedir que muitos comentários fossem carregados.
+
+### Componente HomePage
+
+A parte dos posts foi bem simples, afinal, o componente de PostCard foi reutilizado, com
+a unica diferença sendo quais posts seriam renderizados. A única parte que tive
+de tomar cuidade, foi como carregar os dados do sistema, afinal são queries bem grandes.
+Utilizei a IA para melhorar as queries que eu formulei, e depois só guardei os dados
+em cache para evitar que muitas queries dessa magnitute fossem disparadas.

@@ -8,7 +8,7 @@ declare(strict_types=1);
     <div>
         <!-- Feed -->
         <x-feed>
-            <!-- Posts -->
+            <livewire:home-page />
         </x-feed>
     </div>
 </x-layouts.guest>
