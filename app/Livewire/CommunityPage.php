@@ -29,6 +29,10 @@ final class CommunityPage extends Component implements HasActions, HasSchemas
 
     public Community $community;
 
+    protected $listeners = [
+        'postDeleted' => '$refresh',
+    ];
+
     public function mount(Community $community): void
     {
         $this->community = $community;
