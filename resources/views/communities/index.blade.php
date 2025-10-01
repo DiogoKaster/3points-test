@@ -9,9 +9,9 @@ declare(strict_types=1);
         <!-- Feed -->
         <x-feed>
             <x-card class="space-y-8">
-                <x-title>Veja as comunidades mais populares no momento!</x-title>
+                <x-title>Veja as últimas comunidades criadas!</x-title>
 
-                @foreach ($communities as $community)
+                @forelse ($communities as $community)
                     <a
                         href="{{ route('communities.show', $community->slug) }}"
                         class="block"
@@ -35,7 +35,11 @@ declare(strict_types=1);
                             </div>
                         </x-card>
                     </a>
-                @endforeach
+                @empty
+                    <x-card :elevation="2" class="border-dashed text-center">
+                        <p class="text-text-medium">Ainda não existem comunidades!</p>
+                    </x-card>
+                @endforelse
             </x-card>
         </x-feed>
     </div>

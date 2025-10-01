@@ -73,7 +73,9 @@ declare(strict_types=1);
             @forelse ($this->comment->replies as $reply)
                 <livewire:comment-card :isReply="true" :comment="$reply" wire:key="comment-reply-{{ $reply->id }}" />
             @empty
-                
+                <x-card :elevation="2" class="border-dashed text-center">
+                    <p class="text-text-medium">Sem comentários!</p>
+                </x-card>
             @endforelse
         </div>
     @endif
