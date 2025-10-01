@@ -87,6 +87,12 @@ mesma do UserCommunitiesSidebar, em geral, todos os componentes livewire que eu
 criar tem a mesma motivação por trás. Como essa página irá lidar com operação
 de entrada de membros e criação de posts, acho válida a separação também.
 
+Aqui também eu tive que procurar um pouco na documentação onde que eu estava errando
+na hora de realizar o mount da action de criação de posts, já que eu
+queria aproveitar os campos do próprio Filament. Acontece que a configuração de certas
+estilizações e scripts estavam incorretos. Corrigindo isso, foi muito simples
+fazer a modal com o form de criação de posts dentro da página da comunidade.
+
 ### Componente PostCard
 
 Além das razões já comentadas anteriormente, esse componente será reutilizado em duas páginas:

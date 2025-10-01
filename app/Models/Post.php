@@ -20,6 +20,8 @@ final class Post extends Model
     use HasVotes;
 
     protected $fillable = [
+        'author_id',
+        'community_id',
         'title',
         'body',
         'votes',

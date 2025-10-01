@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 ?>
+
 <x-layouts.partials.head>
     <body class="antialiased">
         <div class="flex min-h-screen flex-col items-center pt-6 sm:justify-center sm:pt-0">
@@ -10,6 +11,11 @@ declare(strict_types=1);
                 {{ $slot }}
             </div>
         </div>
+
+        @livewire('notifications')
+        @filamentScripts
+        @vite('resources/js/app.js')
     </body>
 </x-layouts.partials.head>
-<?php 
+
+<?php

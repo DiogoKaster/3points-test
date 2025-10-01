@@ -1,6 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import 'tailwindcss';
 
+@import '../../vendor/filament/support/resources/css/index.css';
+@import '../../vendor/filament/actions/resources/css/index.css';
+@import '../../vendor/filament/forms/resources/css/index.css';
+@import '../../vendor/filament/infolists/resources/css/index.css';
+@import '../../vendor/filament/notifications/resources/css/index.css';
+@import '../../vendor/filament/schemas/resources/css/index.css';
+@import '../../vendor/filament/tables/resources/css/index.css';
+@import '../../vendor/filament/widgets/resources/css/index.css';
+
+@variant dark (&:where(.dark, .dark *));
+
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
@@ -94,4 +105,24 @@
             --color-helper-outline: #2c2c2d;
         }
     }
+}
+
+.fi-modal-content {
+    @apply !bg-elevation-surface;
+}
+
+.fi-modal-header {
+    @apply !bg-elevation-surface;
+}
+
+.fi-modal-footer {
+    @apply !bg-elevation-surface;
+}
+
+.fi-fo-text-input {
+    @apply !bg-elevation-01dp;
+}
+
+.fi-fo-markdown-editor {
+    @apply !bg-elevation-01dp;
 }
