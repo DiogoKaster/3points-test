@@ -7,6 +7,7 @@ namespace App\Livewire;
 use App\Models\Post;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\Features\SupportRedirects\Redirector;
 
@@ -19,14 +20,26 @@ final class PostCard extends Component
         $this->post = $post;
     }
 
-    public function like(): void
+    public function upvote(): void
     {
-        // dd('aaaaa');
+        if (Auth::guest()) {
+            $this->redirect(route('login'));
+
+            return;
+        }
+
+        $this->post->vote(Auth::user(), 1);
     }
 
-    public function dislike(): void
+    public function downvote(): void
     {
-        // dd('bbbbb');
+        if (Auth::guest()) {
+            $this->redirect(route('login'));
+
+            return;
+        }
+
+        $this->post->vote(Auth::user(), -1);
     }
 
     public function showPost(): RedirectResponse|Redirector
@@ -39,6 +52,19 @@ final class PostCard extends Component
 
     public function render(): View
     {
-        return view('livewire.post-card');
+        $userVote = null;
+
+        if (Auth::check()) {
+            $vote = $this->post->votes()->where('user_id', Auth::id())->first();
+
+            if ($vote) {
+                $userVote = $vote->type;
+            }
+        }
+
+        return view('livewire.post-card',
+            [
+                'userVote' => $userVote,
+            ]);
     }
 }

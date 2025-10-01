@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 ?>
+
 @php
     $postAuthorAvatarUrl = $post->author->getFilamentAvatarUrl();
 @endphp
@@ -40,12 +41,26 @@ declare(strict_types=1);
     </div>
 
     <div class="mt-6 flex items-center gap-10">
-        <x-heroicon-o-chat-bubble-oval-left class="text-icon-medium hover:text-icon-high h-5 w-5" />
-        <x-heroicon-o-hand-thumb-up wire:click.prevent="like" class="text-icon-medium hover:text-icon-high h-5 w-5" />
-        <x-heroicon-o-hand-thumb-down
-            wire:click.prevent="dislike"
-            class="text-icon-medium hover:text-icon-high h-5 w-5"
+        <x-filament::icon-button
+            wire:click.prevent="showPost"
+            icon="heroicon-o-chat-bubble-oval-left"
+            size="sm"
+            color="gray"
+        />
+        <x-filament::icon-button
+            wire:click.stop.prevent="upvote"
+            icon="heroicon-o-hand-thumb-up"
+            size="sm"
+            color="{{ $userVote === 1 ? 'success' : 'gray'}}"
+        />
+        <span class="text-icon-medium">{{ $post->votes }}</span>
+        <x-filament::icon-button
+            wire:click.stop.prevent="downvote"
+            icon="heroicon-o-hand-thumb-down"
+            size="sm"
+            color="{{ $userVote === -1 ? 'danger' : 'gray'}}"
         />
     </div>
 </x-card>
-<?php 
+
+<?php
