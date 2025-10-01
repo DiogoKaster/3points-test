@@ -5,8 +5,8 @@ declare(strict_types=1);
 ?>
 
 <x-card :elevation="2" class="hover:border-outline-low cursor-pointer space-y-4" wire:click.prevent="showPost">
-    <div class="flex items-center">
-        <div class="flex flex-grow flex-row gap-2">
+    <div class="flex items-center justify-between">
+        <div class="flex gap-2">
             <x-avatar :model="$post->author" :fi-avatar="true" alt="{{$post->author->name}}" />
 
             <div class="space-y-1">

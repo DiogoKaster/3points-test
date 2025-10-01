@@ -5,8 +5,8 @@ declare(strict_types=1);
 ?>
 
 <x-card :elevation="2" @class(['hover:border-outline-low space-y-4', $isReply ? 'border-none' : ''])>
-    <div class="flex items-center">
-        <div class="flex flex-grow flex-row gap-2">
+    <div class="flex items-center justify-between">
+        <div class="flex gap-2">
             <x-avatar :model="$comment->author" :fi-avatar="true" alt="{{$comment->author->name}}" />
 
             <div class="text-2xs text-text-medium flex items-center gap-1">
@@ -33,7 +33,7 @@ declare(strict_types=1);
         </div>
     </div>
 
-    <div class="mt-6 flex items-center gap-8">
+    <div class="mt-6 flex flex-wrap items-center gap-8">
         @if (! $isReply)
             <x-filament::icon-button
                 wire:click.prevent="toggleReplies"
