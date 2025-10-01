@@ -19,7 +19,7 @@ declare(strict_types=1);
 
             'p-4',
             'md:p-6',
-            'rounded-lg',
+            'rounded-xl',
             'border',
             'border-helper-outline',
         ])
