@@ -8,9 +8,12 @@ use App\Models\Post;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 final class PostPage extends Component
 {
+    use WithPagination;
+
     public Post $post;
 
     protected $listeners = [
@@ -30,7 +33,7 @@ final class PostPage extends Component
             ->withCount('replies')
             ->whereNull('parent_id')
             ->latest()
-            ->get();
+            ->paginate(10);
 
         return view('livewire.post-page', [
             'comments' => $comments,

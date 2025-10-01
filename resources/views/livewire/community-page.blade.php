@@ -75,6 +75,10 @@ declare(strict_types=1);
                 <p class="text-text-medium">Ainda não há posts nesta comunidade. Seja o primeiro!</p>
             </x-card>
         @endforelse
+
+        <div class="mt-8">
+            {{ $posts->links() }}
+        </div>
     </x-card>
 
     <x-filament-actions::modals />
