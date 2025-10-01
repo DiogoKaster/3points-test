@@ -20,7 +20,8 @@ declare(strict_types=1);
         <link rel="preconnect" href="https://fonts.bunny.net" />
 
         <!-- Styles / Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @filamentStyles
+        @vite(['resources/css/app.css'])
     </head>
     {{ $slot }}
 </html>

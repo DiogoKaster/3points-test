@@ -55,7 +55,13 @@ declare(strict_types=1);
                 </x-secondary-button>
             @endif
 
-            <x-primary-button class="w-full justify-center sm:w-auto">Criar post</x-primary-button>
+            @auth
+                @if ($isMember)
+                    <x-primary-button wire:click="mountAction('createPost')" class="w-full justify-center sm:w-auto">
+                        Criar post
+                    </x-primary-button>
+                @endif
+            @endauth
         </div>
     </div>
 
@@ -70,6 +76,8 @@ declare(strict_types=1);
             </x-card>
         @endforelse
     </x-card>
+
+    <x-filament-actions::modals />
 </div>
 
 <?php

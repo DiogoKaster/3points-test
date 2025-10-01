@@ -30,7 +30,7 @@ final class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login(LoginPage::class)
             ->colors([
-                'primary' => Color::Amber,
+                'primary' => Color::Indigo,
             ])
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->discoverResources(in: app_path('Filament/Admin/Resources'), for: 'App\\Filament\\Admin\\Resources')
