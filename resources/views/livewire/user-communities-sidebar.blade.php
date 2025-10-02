@@ -21,7 +21,7 @@ declare(strict_types=1);
                     </p>
                 </div>
 
-                <span class="font-family-secondary bg-helper-outline rounded-full px-3 py-1.5">
+                <span class="font-family-secondary rounded-full border border-indigo-600/50 bg-indigo-600/20 px-5 py-1">
                     @if ($community->posts_count > 999)
                         +999
                     @else

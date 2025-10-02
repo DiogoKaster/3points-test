@@ -23,6 +23,9 @@ declare(strict_types=1);
         @filamentStyles
         @vite(['resources/css/app.css'])
     </head>
+    <div
+        class="pointer-events-none absolute inset-0 z-50 bg-gradient-to-b from-indigo-600/4 to-transparent mix-blend-multiply"
+    ></div>
     {{ $slot }}
 </html>
 
