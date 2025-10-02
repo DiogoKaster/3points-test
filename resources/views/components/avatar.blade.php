@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 ?>
+
 @props([
     'collection',
     'model',
@@ -16,6 +17,7 @@ declare(strict_types=1);
         'lg' => 'h-16 w-16',
         'md' => 'h-12 w-12',
         'xs' => 'h-6 w-6',
+        '2xs' => 'h-4 w-4',
         default => 'h-8 w-8',
     };
 
@@ -42,4 +44,5 @@ declare(strict_types=1);
         $sizeClasses,
     ]) />
 @endif
-<?php 
+
+<?php

@@ -14,7 +14,7 @@ declare(strict_types=1);
                 class="hover:to-elevation-02dp flex items-center justify-between rounded-lg p-4 hover:bg-gradient-to-r hover:from-indigo-600/10 hover:outline hover:outline-indigo-600/30"
             >
                 <div class="flex items-center gap-4">
-                    <x-avatar collection="avatars" :model="$community" alt="{{$community->name}}" size="xs" />
+                    <x-avatar collection="avatars" :model="$community" alt="{{$community->name}}" size="2xs" />
 
                     <p class="text-text-medium text-xs">
                         {{ $community->name }}
