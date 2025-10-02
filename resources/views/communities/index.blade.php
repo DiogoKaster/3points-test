@@ -17,7 +17,7 @@ declare(strict_types=1);
                         class="block"
                         wire:key="community-{{ $community->id }}"
                     >
-                        <x-card :elevation="2">
+                        <x-card class="hover:outline-text-low transition hover:scale-[1.01]" :elevation="2">
                             <div class="flex items-center space-x-4">
                                 <x-avatar
                                     collection="avatars"

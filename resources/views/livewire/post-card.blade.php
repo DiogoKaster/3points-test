@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 ?>
 
-<x-card :elevation="2" class="cursor-pointer space-y-4 hover:outline-indigo-600/50" wire:click.prevent="showPost">
+<x-card :elevation="2" class="hover:outline-text-low cursor-pointer space-y-4" wire:click.prevent="showPost">
     <div class="flex items-center justify-between">
         <div class="flex gap-2">
             <x-avatar :model="$post->author" :fi-avatar="true" alt="{{$post->author->name}}" />
@@ -65,6 +65,12 @@ declare(strict_types=1);
             size="sm"
             color="{{ $userVote === -1 ? 'danger' : 'gray'}}"
         />
+        <button
+            class="text-text-low hover:text-text-medium cursor-pointer text-xs"
+            wire:click.stop.prevent="toggleReplyForm"
+        >
+            Responder
+        </button>
     </div>
 
     @if ($showReplies)
@@ -80,6 +86,12 @@ declare(strict_types=1);
                     <p class="text-text-medium">Sem comentários!</p>
                 </x-card>
             @endforelse
+        </div>
+    @endif
+
+    @if ($showReplyForm)
+        <div>
+            <livewire:comment-form :commentable="$post" wire:key="reply-form-for-{{ $post->id }}" />
         </div>
     @endif
 </x-card>

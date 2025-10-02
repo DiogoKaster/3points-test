@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 ?>
 
-{{-- resources/views/livewire/comment-form.blade.php --}}
 <x-card>
-    <form wire:submit="createComment" class="space-y-4">
+    <form wire:submit="createComment" class="space-y-4" wire:click.stop>
         <textarea
             wire:model="body"
             placeholder="Adicionar um comentário..."

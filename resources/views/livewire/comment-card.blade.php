@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 ?>
 
-<x-card :elevation="2" @class(['hover:outline-indigo-600/50 space-y-4', $isReply ? 'outline-none' : ''])>
+<x-card :elevation="2" @class(['hover:outline-text-low space-y-4', $isReply ? 'outline-none' : ''])>
     <div class="flex items-center justify-between">
         <div class="flex gap-2">
             <x-avatar :model="$comment->author" :fi-avatar="true" alt="{{$comment->author->name}}" />

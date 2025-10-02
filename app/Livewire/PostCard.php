@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Livewire;
 
+use App\Livewire\Traits\HasComments;
 use App\Models\Post;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
@@ -15,35 +17,23 @@ use Livewire\Features\SupportRedirects\Redirector;
 
 final class PostCard extends Component
 {
+    use HasComments;
+
     public Post $post;
 
-    public bool $showReplies = false;
+    protected $listeners = [
+        'commentCreated' => '$refresh',
+        'commentDeleted' => '$refresh',
+    ];
+
+    public function getModel(): Model
+    {
+        return $this->post;
+    }
 
     public function mount(Post $post): void
     {
         $this->post = $post;
-    }
-
-    public function upvote(): void
-    {
-        if (Auth::guest()) {
-            $this->redirect(route('login'));
-
-            return;
-        }
-
-        $this->post->vote(Auth::user(), 1);
-    }
-
-    public function downvote(): void
-    {
-        if (Auth::guest()) {
-            $this->redirect(route('login'));
-
-            return;
-        }
-
-        $this->post->vote(Auth::user(), -1);
     }
 
     public function delete(): void
@@ -67,36 +57,19 @@ final class PostCard extends Component
         ]);
     }
 
-    public function toggleReplies(): void
-    {
-        $this->showReplies = ! $this->showReplies;
-    }
-
     #[Computed]
     public function replies(): Collection
     {
         return $this->post
-            ->comments
-            ->replies()
+            ->comments()
             ->with('author', 'community')
             ->get();
     }
 
     public function render(): View
     {
-        $userVote = null;
-
-        if (Auth::check()) {
-            $vote = $this->post->votes()->where('user_id', Auth::id())->first();
-
-            if ($vote) {
-                $userVote = $vote->type;
-            }
-        }
-
-        return view('livewire.post-card',
-            [
-                'userVote' => $userVote,
-            ]);
+        return view('livewire.post-card', [
+            'userVote' => $this->getUserVote(),
+        ]);
     }
 }

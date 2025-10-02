@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\Livewire;
 
+use App\Livewire\Traits\HasComments;
 use App\Models\Comment;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Computed;
@@ -14,11 +16,9 @@ use Livewire\Component;
 
 final class CommentCard extends Component
 {
+    use HasComments;
+
     public Comment $comment;
-
-    public bool $showReplies = false;
-
-    public bool $showReplyForm = false;
 
     public bool $isReply = false;
 
@@ -27,32 +27,15 @@ final class CommentCard extends Component
         'commentDeleted' => '$refresh',
     ];
 
+    public function getModel(): Model
+    {
+        return $this->comment;
+    }
+
     public function mount(Comment $comment, bool $isReply = false): void
     {
         $this->comment = $comment;
         $this->isReply = $isReply;
-    }
-
-    public function upvote(): void
-    {
-        if (Auth::guest()) {
-            $this->redirect(route('login'));
-
-            return;
-        }
-
-        $this->comment->vote(Auth::user(), 1);
-    }
-
-    public function downvote(): void
-    {
-        if (Auth::guest()) {
-            $this->redirect(route('login'));
-
-            return;
-        }
-
-        $this->comment->vote(Auth::user(), -1);
     }
 
     public function delete(): void
@@ -77,38 +60,11 @@ final class CommentCard extends Component
             ->get();
     }
 
-    public function toggleReplies(): void
-    {
-        $this->showReplies = ! $this->showReplies;
-    }
-
-    public function toggleReplyForm(): void
-    {
-        if (Auth::guest()) {
-            $this->redirect(route('login'));
-
-            return;
-        }
-
-        $this->showReplyForm = ! $this->showReplyForm;
-    }
-
     public function render(): View|Factory
     {
-        $userVote = null;
-        $replies = $this->comment->replies()->count();
-
-        if (Auth::check()) {
-            $vote = $this->comment->votes()->where('user_id', Auth::id())->first();
-
-            if ($vote) {
-                $userVote = $vote->type;
-            }
-        }
-
         return view('livewire.comment-card', [
-            'userVote' => $userVote,
-            'replies' => $replies,
+            'userVote' => $this->getUserVote(),
+            'replies' => $this->comment->replies()->count(),
         ]);
     }
 }
