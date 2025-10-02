@@ -35,7 +35,7 @@ declare(strict_types=1);
             </div>
         </div>
 
-        <div class="flex w-full flex-col items-center gap-8 sm:w-auto sm:flex-row">
+        <div class="flex w-full min-w-fit flex-col items-center gap-8 sm:w-auto sm:flex-row">
             @if ($isMember)
                 <x-secondary-button class="w-full justify-center sm:w-auto" wire:click="leaveCommunity">
                     Sair
