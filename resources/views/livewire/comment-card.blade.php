@@ -50,23 +50,25 @@ declare(strict_types=1);
             size="sm"
             color="{{ $userVote === 1 ? 'success' : 'gray'}}"
         />
+
         <span class="text-icon-medium">{{ $comment->votes }}</span>
+
         <x-filament::icon-button
             wire:click.prevent="downvote"
             icon="heroicon-o-hand-thumb-down"
             size="sm"
             color="{{ $userVote === -1 ? 'danger' : 'gray'}}"
         />
+
         @if (! $isReply)
-            <button class="text-text-low cursor-pointer text-xs" wire:click.prevent="toggleReplyForm">Responder</button>
+            <button
+                class="text-text-low hover:text-text-medium cursor-pointer text-xs"
+                wire:click.prevent="toggleReplyForm"
+            >
+                Responder
+            </button>
         @endif
     </div>
-
-    @if ($showReplyForm)
-        <div>
-            <livewire:comment-form :commentable="$comment" wire:key="reply-form-for-{{ $comment->id }}" />
-        </div>
-    @endif
 
     @if ($showReplies)
         <div class="space-y-4">
@@ -77,6 +79,12 @@ declare(strict_types=1);
                     <p class="text-text-medium">Sem comentários!</p>
                 </x-card>
             @endforelse
+        </div>
+    @endif
+
+    @if ($showReplyForm)
+        <div>
+            <livewire:comment-form :commentable="$comment" wire:key="reply-form-for-{{ $comment->id }}" />
         </div>
     @endif
 </x-card>
