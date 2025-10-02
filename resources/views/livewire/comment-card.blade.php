@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 ?>
 
-<x-card :elevation="2" @class(['hover:border-outline-low space-y-4', $isReply ? 'border-none' : ''])>
+<x-card :elevation="2" @class(['hover:outline-indigo-600/50 space-y-4', $isReply ? 'outline-none' : ''])>
     <div class="flex items-center justify-between">
         <div class="flex gap-2">
             <x-avatar :model="$comment->author" :fi-avatar="true" alt="{{$comment->author->name}}" />
@@ -22,7 +22,12 @@ declare(strict_types=1);
 
         @auth
             @if (\Illuminate\Support\Facades\Auth::user()->is_admin || $comment->author->is(\Illuminate\Support\Facades\Auth::user()))
-                <x-filament::icon-button wire:click.prevent="delete" icon="heroicon-o-trash" size="sm" color="danger" />
+                <x-filament::icon-button
+                    wire:click.stop.prevent="delete"
+                    icon="heroicon-o-trash"
+                    size="sm"
+                    color="danger"
+                />
             @endif
         @endauth
     </div>
@@ -36,7 +41,7 @@ declare(strict_types=1);
     <div class="mt-6 flex flex-wrap items-center gap-8">
         @if (! $isReply)
             <x-filament::icon-button
-                wire:click.prevent="toggleReplies"
+                wire:click.stop.prevent="toggleReplies"
                 icon="heroicon-o-chat-bubble-oval-left"
                 size="sm"
                 color="gray"
@@ -45,7 +50,7 @@ declare(strict_types=1);
         @endif
 
         <x-filament::icon-button
-            wire:click.prevent="upvote"
+            wire:click.stop.prevent="upvote"
             icon="heroicon-o-hand-thumb-up"
             size="sm"
             color="{{ $userVote === 1 ? 'success' : 'gray'}}"
@@ -54,7 +59,7 @@ declare(strict_types=1);
         <span class="text-icon-medium">{{ $comment->votes }}</span>
 
         <x-filament::icon-button
-            wire:click.prevent="downvote"
+            wire:click.stop.prevent="downvote"
             icon="heroicon-o-hand-thumb-down"
             size="sm"
             color="{{ $userVote === -1 ? 'danger' : 'gray'}}"

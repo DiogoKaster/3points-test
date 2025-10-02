@@ -20,8 +20,8 @@ declare(strict_types=1);
             'p-4',
             'md:p-6',
             'rounded-xl',
-            'border',
-            'border-helper-outline',
+            'outline',
+            'outline-helper-outline',
         ])
     }}
 >

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 ?>
 
-<x-card :elevation="2" class="hover:border-outline-low cursor-pointer space-y-4" wire:click.prevent="showPost">
+<x-card :elevation="2" class="cursor-pointer space-y-4 hover:outline-indigo-600/50" wire:click.prevent="showPost">
     <div class="flex items-center justify-between">
         <div class="flex gap-2">
             <x-avatar :model="$post->author" :fi-avatar="true" alt="{{$post->author->name}}" />
@@ -46,7 +46,7 @@ declare(strict_types=1);
 
     <div class="mt-6 flex items-center gap-8">
         <x-filament::icon-button
-            wire:click.prevent="showPost"
+            wire:click.stop.prevent="toggleReplies"
             icon="heroicon-o-chat-bubble-oval-left"
             size="sm"
             color="gray"
@@ -66,6 +66,22 @@ declare(strict_types=1);
             color="{{ $userVote === -1 ? 'danger' : 'gray'}}"
         />
     </div>
+
+    @if ($showReplies)
+        <div class="space-y-4">
+            @forelse ($this->post->comments()->latest()->get() as $comment)
+                <livewire:comment-card
+                    :isReply="true"
+                    :comment="$comment"
+                    wire:key="comment-reply-{{ $comment->id }}"
+                />
+            @empty
+                <x-card :elevation="2" class="border-dashed text-center">
+                    <p class="text-text-medium">Sem comentários!</p>
+                </x-card>
+            @endforelse
+        </div>
+    @endif
 </x-card>
 
 <?php

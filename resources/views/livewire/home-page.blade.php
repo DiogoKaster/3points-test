@@ -6,11 +6,13 @@ declare(strict_types=1);
 
 <div class="space-y-8">
     <div class="space-y-8">
-        <x-title>
-            Olá,
-            <strong class="text-indigo-600">${{ \Illuminate\Support\Facades\Auth::user()->name }}</strong>
-        </x-title>
-        <h3 class="text-text-medium text-xs">Confira as estatísticas das comunidades que você segue</h3>
+        <div class="space-y-4">
+            <x-title class="text-md">
+                Olá,
+                <strong class="text-indigo-600">${{ \Illuminate\Support\Facades\Auth::user()->name }}</strong>
+            </x-title>
+            <h3 class="text-text-medium text-xs">Confira as estatísticas das comunidades que você segue</h3>
+        </div>
         <div class="grid grid-cols-1 gap-8 sm:grid-cols-3">
             <x-stat-card icon="s-document-text" label="Posts Criados" :value="$stats['posts_count']" />
 

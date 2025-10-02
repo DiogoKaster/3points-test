@@ -7,13 +7,17 @@ namespace App\Livewire;
 use App\Models\Post;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\Features\SupportRedirects\Redirector;
 
 final class PostCard extends Component
 {
     public Post $post;
+
+    public bool $showReplies = false;
 
     public function mount(Post $post): void
     {
@@ -61,6 +65,21 @@ final class PostCard extends Component
             'community' => $this->post->community,
             'post' => $this->post,
         ]);
+    }
+
+    public function toggleReplies(): void
+    {
+        $this->showReplies = ! $this->showReplies;
+    }
+
+    #[Computed]
+    public function replies(): Collection
+    {
+        return $this->post
+            ->comments
+            ->replies()
+            ->with('author', 'community')
+            ->get();
     }
 
     public function render(): View
