@@ -3,15 +3,17 @@
 declare(strict_types=1);
 
 ?>
+
 <div class="space-y-8">
     <div class="space-y-6">
         <x-title>Dados da plataforma</x-title>
         <div class="grid grid-cols-1 gap-8 sm:grid-cols-3">
             <x-stat-card icon="s-document-text" label="Posts Criados" :value="$stats['posts_count']" />
 
-            <x-stat-card icon="s-users" label="Membros" :value="$stats['users_count']" />
+            <x-stat-card color="lime" icon="s-users" label="Membros" :value="$stats['users_count']" />
 
             <x-stat-card
+                color="indigo"
                 icon="s-chat-bubble-left-right"
                 label="Comentários e Respostas"
                 :value="$stats['comments_count']"
@@ -51,4 +53,5 @@ declare(strict_types=1);
         @endauth
     </div>
 </div>
-<?php 
+
+<?php

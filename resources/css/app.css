@@ -55,6 +55,9 @@
     --color-neutral-neutral: #208bee;
     --color-helper-outline: #e8e9f1;
 
+    --color-brand-primary: #3895ff;
+    --color-lime-primary: #a5e412;
+
     --font-family-primary: 'Inter', ui-sans-serif, system-ui, sans-serif;
     --font-family-secondary: 'Cal Sans', ui-sans-serif, system-ui, sans-serif;
 
