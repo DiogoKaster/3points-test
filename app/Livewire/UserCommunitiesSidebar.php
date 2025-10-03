@@ -14,6 +14,8 @@ final class UserCommunitiesSidebar extends Component
 {
     public Collection $userCommunities;
 
+    public ?int $activeCommunityId = null;
+
     protected $listeners = [
         'refresh-sidebar-communities' => '$refresh',
     ];
@@ -21,6 +23,10 @@ final class UserCommunitiesSidebar extends Component
     public function mount(): void
     {
         $this->userCommunities = collect();
+
+        if ($community = request()->route('community')) {
+            $this->activeCommunityId = $community->id;
+        }
     }
 
     public function render(): Factory|View|\Illuminate\View\View
@@ -32,6 +38,8 @@ final class UserCommunitiesSidebar extends Component
                 ->get();
         }
 
-        return view('livewire.user-communities-sidebar');
+        return view('livewire.user-communities-sidebar', [
+            'activeCommunityId' => $this->activeCommunityId,
+        ]);
     }
 }

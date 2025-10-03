@@ -36,7 +36,8 @@ final class CommunityForm
                         ->afterStateUpdated(function ($state, callable $set): void {
                             $set('slug', Str::slug($state));
                         }),
-                    Textarea::make('description'),
+                    Textarea::make('description')
+                        ->maxLength(1000),
                 ])->columnSpanFull(),
             ]);
     }

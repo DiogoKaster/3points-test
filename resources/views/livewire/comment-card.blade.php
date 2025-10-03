@@ -4,25 +4,41 @@ declare(strict_types=1);
 
 ?>
 
-<x-card :elevation="2" @class(['hover:border-outline-low space-y-4', $isReply ? 'border-none' : ''])>
-    <div class="flex items-center justify-between">
+@php
+    $isAuthor = $comment->post->author->is($comment->author);
+@endphp
+
+<x-card :elevation="2" @class(['hover:outline-text-low space-y-4', $isReply ? 'outline-none' : ''])>
+    <div class="flex items-center justify-between gap-2">
         <div class="flex gap-2">
             <x-avatar :model="$comment->author" :fi-avatar="true" alt="{{$comment->author->name}}" />
-
-            <div class="text-2xs text-text-medium flex items-center gap-1">
-                <p>
-                    @
-                    <span></span>
-                    {{ $comment->author->name }}
-                </p>
-                <span>&bull;</span>
-                <span>{{ $comment->created_at->diffForHumans() }}</span>
+            <div class="text-text-high flex items-center gap-4 text-xs">
+                <p>{{ $comment->author->name }}</p>
+                <span class="text-3xs text-text-medium">{{ $comment->created_at->diffForHumans() }}</span>
+                @if ($isAuthor)
+                    <span
+                        class="text-3xs text-brand-primary border-brand-primary/50 bg-brand-primary/10 rounded-md border px-2 py-0.5 font-semibold"
+                    >
+                        Autor
+                    </span>
+                @else
+                    <span
+                        class="text-3xs rounded-md border border-green-600/50 bg-green-600/10 px-2 py-0.5 font-semibold text-green-600"
+                    >
+                        Resposta
+                    </span>
+                @endif
             </div>
         </div>
 
         @auth
             @if (\Illuminate\Support\Facades\Auth::user()->is_admin || $comment->author->is(\Illuminate\Support\Facades\Auth::user()))
-                <x-filament::icon-button wire:click.prevent="delete" icon="heroicon-o-trash" size="sm" color="danger" />
+                <x-filament::icon-button
+                    wire:click.stop.prevent="delete"
+                    icon="heroicon-o-trash"
+                    size="sm"
+                    color="danger"
+                />
             @endif
         @endauth
     </div>
@@ -34,39 +50,38 @@ declare(strict_types=1);
     </div>
 
     <div class="mt-6 flex flex-wrap items-center gap-8">
-        @if (! $isReply)
-            <x-filament::icon-button
-                wire:click.prevent="toggleReplies"
-                icon="heroicon-o-chat-bubble-oval-left"
-                size="sm"
-                color="gray"
-            />
-            <span class="text-icon-medium">{{ $replies }}</span>
-        @endif
+        <x-filament::icon-button
+            wire:click.stop.prevent="toggleReplies"
+            icon="heroicon-o-chat-bubble-oval-left"
+            size="sm"
+            color="gray"
+        />
+
+        <span class="text-icon-medium">{{ $replies }}</span>
 
         <x-filament::icon-button
-            wire:click.prevent="upvote"
+            wire:click.stop.prevent="upvote"
             icon="heroicon-o-hand-thumb-up"
             size="sm"
             color="{{ $userVote === 1 ? 'success' : 'gray'}}"
         />
+
         <span class="text-icon-medium">{{ $comment->votes }}</span>
+
         <x-filament::icon-button
-            wire:click.prevent="downvote"
+            wire:click.stop.prevent="downvote"
             icon="heroicon-o-hand-thumb-down"
             size="sm"
             color="{{ $userVote === -1 ? 'danger' : 'gray'}}"
         />
-        @if (! $isReply)
-            <button class="text-text-low cursor-pointer text-xs" wire:click.prevent="toggleReplyForm">Responder</button>
-        @endif
-    </div>
 
-    @if ($showReplyForm)
-        <div>
-            <livewire:comment-form :commentable="$comment" wire:key="reply-form-for-{{ $comment->id }}" />
-        </div>
-    @endif
+        <button
+            class="text-text-low hover:text-text-medium cursor-pointer text-xs"
+            wire:click.stop.prevent="toggleReplyForm"
+        >
+            Responder
+        </button>
+    </div>
 
     @if ($showReplies)
         <div class="space-y-4">
@@ -77,6 +92,12 @@ declare(strict_types=1);
                     <p class="text-text-medium">Sem comentários!</p>
                 </x-card>
             @endforelse
+        </div>
+    @endif
+
+    @if ($showReplyForm)
+        <div>
+            <livewire:comment-form :commentable="$comment" wire:key="reply-form-for-{{ $comment->id }}" />
         </div>
     @endif
 </x-card>
