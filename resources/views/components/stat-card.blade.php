@@ -36,7 +36,7 @@ declare(strict_types=1);
 
 <div
     @class([
-        'flex h-28 items-center gap-4 rounded-xl border p-4 md:p-6',
+        'flex h-28 items-center gap-4 rounded-xl border p-4 transition hover:scale-[1.01] md:p-6',
         'to-elevate-surface bg-gradient-to-r',
         $colorClasses['gradient_from'],
         $colorClasses['border'],

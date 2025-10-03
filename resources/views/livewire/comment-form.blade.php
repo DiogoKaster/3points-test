@@ -9,7 +9,7 @@ declare(strict_types=1);
         <textarea
             wire:model="body"
             placeholder="Adicionar um comentário..."
-            rows="2"
+            rows="3"
             class="border-outline-dark bg-elevation-01dp text-text-high w-full rounded-md p-2 text-xs"
         ></textarea>
 

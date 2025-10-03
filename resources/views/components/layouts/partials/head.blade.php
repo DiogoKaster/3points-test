@@ -24,7 +24,7 @@ declare(strict_types=1);
         @vite(['resources/css/app.css'])
     </head>
     <div
-        class="pointer-events-none absolute inset-0 z-50 bg-gradient-to-b from-indigo-600/15 to-transparent mix-blend-multiply"
+        class="pointer-events-none absolute inset-0 z-50 bg-gradient-to-br from-indigo-600/5 to-transparent mix-blend-normal"
     ></div>
     {{ $slot }}
 </html>

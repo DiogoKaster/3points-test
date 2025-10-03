@@ -9,8 +9,8 @@ declare(strict_types=1);
         $attributes->merge([
             'type' => 'button',
             'class' => 'inline-flex items-center
-                            px-4 py-3 bg-transparent text-white border border-outline-dark hover:border-indigo-600/50
-                            rounded-md font-semibold transition ease-in-out duration-150 cursor-pointer',
+                                    px-4 py-3 bg-transparent text-white border border-outline-dark hover:border-text-low
+                                    rounded-md font-semibold transition ease-in-out duration-150 cursor-pointer',
         ])
     }}
 >

@@ -4,12 +4,16 @@ declare(strict_types=1);
 
 ?>
 
+@php
+    $userName = \Illuminate\Support\Facades\Auth::user()->name ?? null;
+@endphp
+
 <div class="space-y-8">
     <div class="space-y-8">
         <div class="space-y-4">
             <x-title class="text-md">
                 Olá,
-                <strong class="text-indigo-600">${{ \Illuminate\Support\Facades\Auth::user()->name }}</strong>
+                <strong class="text-indigo-600">${{ $userName ?? 'user' }}</strong>
             </x-title>
             <h3 class="text-text-medium text-xs">Confira as estatísticas das comunidades que você segue</h3>
         </div>
