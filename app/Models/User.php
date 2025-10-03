@@ -9,6 +9,9 @@ use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\MediaLibrary\HasMedia;
@@ -31,6 +34,7 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
         'name',
         'email',
         'password',
+        'is_admin',
     ];
 
     /**
@@ -45,14 +49,52 @@ final class User extends Authenticatable implements FilamentUser, HasAvatar, Has
 
     public function canAccessPanel(Panel $panel): bool
     {
-        return true;
+        return $this->is_admin;
     }
 
     public function getFilamentAvatarUrl(): ?string
     {
-        $avatar = $this->getFirstMedia('profile-pictures');
+        return $this->getFirstMedia('profile-pictures')?->getUrl();
+    }
 
-        return $avatar?->getUrl();
+    /**
+     * @return HasMany<Community, $this>
+     */
+    public function communitiesCreated(): HasMany
+    {
+        return $this->hasMany(Community::class, 'author_id');
+    }
+
+    /**
+     * @return BelongsToMany<Community, $this, Pivot>
+     */
+    public function communitiesJoined(): BelongsToMany
+    {
+        return $this->belongsToMany(Community::class, 'community_members');
+    }
+
+    /**
+     * @return HasMany<Post, $this>
+     */
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class, 'author_id');
+    }
+
+    /**
+     * @return HasMany<Comment, $this>
+     */
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class, 'author_id');
+    }
+
+    /**
+     * @return HasMany<Vote, $this>
+     */
+    public function votes(): HasMany
+    {
+        return $this->hasMany(Vote::class);
     }
 
     /**

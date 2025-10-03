@@ -1,23 +1,28 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full bg-gray-50">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<?php
 
-    <title>Reddit-like Home • Laravel</title>
+declare(strict_types=1);
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net" />
-    <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700" rel="stylesheet" />
+?>
 
-    <!-- Styles / Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-<body class="min-h-full ">
-<!-- Top Nav -->
-    <x-navbar />
+<x-layouts.partials.head>
+    <body class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <x-sidebar />
 
-    <!-- Content -->
-    {{ $slot }}
-</body>
-</html>
+        <div class="flex flex-1 flex-col">
+            <!-- Top Nav -->
+            <x-navbar />
+
+            <main class="overflow-y-auto p-4 md:p-8">
+                <!-- Content -->
+                {{ $slot }}
+            </main>
+        </div>
+
+        @livewire('notifications')
+        @filamentScripts
+        @vite('resources/js/app.js')
+    </body>
+</x-layouts.partials.head>
+
+<?php

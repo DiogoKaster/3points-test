@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Providers;
 
 use Carbon\CarbonImmutable;
+use Filament\Support\Colors\Color;
+use Filament\Support\Facades\FilamentColor;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
@@ -23,6 +25,10 @@ final class AppServiceProvider extends ServiceProvider
     {
         $this->registerTelescope();
         $this->registerDebugbar();
+
+        FilamentColor::register([
+            'primary' => Color::Indigo,
+        ]);
     }
 
     /**
