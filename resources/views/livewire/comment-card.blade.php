@@ -77,7 +77,7 @@ declare(strict_types=1);
 
         <button
             class="text-text-low hover:text-text-medium cursor-pointer text-xs"
-            wire:click.prevent="toggleReplyForm"
+            wire:click.stop.prevent="toggleReplyForm"
         >
             Responder
         </button>
