@@ -11,7 +11,12 @@ declare(strict_types=1);
         @foreach ($userCommunities as $community)
             <a
                 href="{{ route('communities.show', $community->slug) }}"
-                class="hover:to-elevation-02dp flex items-center justify-between rounded-lg p-4 hover:bg-gradient-to-r hover:from-indigo-600/10 hover:outline hover:outline-indigo-600/50"
+                @class([
+                    'flex items-center justify-between rounded-lg p-4',
+                    "bg-gradient-to-r from-indigo-600/10
+                                      to-elevation-02dp outline outline-indigo-600/50" => $activeCommunityId === $community->id,
+                    'hover:outline-text-low outline outline-transparent' => $activeCommunityId !== $community->id,
+                ])
             >
                 <div class="flex items-center gap-4">
                     <x-avatar collection="avatars" :model="$community" alt="{{$community->name}}" size="2xs" />
